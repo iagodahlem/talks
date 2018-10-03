@@ -1,0 +1,205 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Architecting Rails apps</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Arvo:400,700|Montserrat:300,400,500,600,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/iagodahlem.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section class="align-left">
+          <h1>Architecting <span class="highlight">Rails</span> apps</h1>
+          <p class="bold">Studies and thoughts from a Front End perspective.</p>
+        </section>
+
+        <section>
+          <h2>Iago Dahlem</h2>
+
+          <ul class="bold">
+            <li>Passionate about web and it's ecossystem</li>
+            <li>JavaScript Addicted (also like Ruby)</li>
+            <li>Software Developer at Codeminer 42</li>
+            <li>Florianópolis</li>
+          </ul>
+        </section>
+
+        <section data-background-image="img/ponte-hercilio-luz-floripa.jpg" data-background-opacity="0.4">
+          <img src="img/codeminer42-logo.png" alt=""  width="160px" style="margin-bottom: 80px;" />
+
+          <h1 style="margin-bottom: 80px;">We Are Hiring!</h1>
+
+          <p class="bold"><span class="highlight-red">become</span>@codeminer42.com</p>
+        </section>
+
+        <section>
+          <h2>Disclaimers</h2>
+
+          <ul>
+            <li>No code examples :(</li>
+            <li>Keep focus on the theory</li>
+            <li>Don't get it to hard</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Why Front-end Perspective?</h2>
+
+          <ul>
+            <li>Common problems</li>
+            <li>Same responsibilities</li>
+          </ul>
+        </section>
+
+        <section>
+          <img src="img/the-clean-architecture.jpg" alt="" />
+        </section>
+
+        <section>
+          <img src="img/rail-top-level-structure.png" alt="" />
+        </section>
+
+        <section>
+          <h2>The bad Rails</h2>
+
+          <ul>
+            <li>Built on top of MVC</li>
+            <li>Changes affects other parts of the app</li>
+            <li>Top level structure screams the web framework</li>
+            <li>We don't know what it does</li>
+          </ul>
+        </section>
+
+        <section>
+          <p class="bold"><q>MVC is a delivery design pattern.</q></p>
+          <p>- Uncle Bob</p>
+        </section>
+
+        <section>
+          <h2>What is Architecture anyway?!</h2>
+
+          <ul>
+            <li>Independent of technology/framework</li>
+            <li>Makes software easier to change and test</li>
+          </ul>
+        </section>
+
+        <section>
+          <p class="bold">Domain layer</p>
+          <p class="bold">Application layer</p>
+          <p class="bold">Infrastructure layer</p>
+          <p class="bold">Input layer</p>
+        </section>
+
+        <section>
+          <h2>Domain Layer</h2>
+
+          <ul>
+            <li>Entities and business Rules</li>
+            <li>Used by the application layer to define use cases</li>
+            <li>Examples: User, Article</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Application Layer</h2>
+
+          <ul>
+            <li>Use cases and actual behavior</li>
+            <li>Interacts with Domain units</li>
+            <li>Adapts the Infrastructure Layer</li>
+            <li>Examples: CreateUser, CreateArticle</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Infrastructure Layer</h2>
+
+          <ul>
+            <li>Interacts with the external world of the application</li>
+            <li>The lowest of them</li>
+            <li>Databases, email services, external APIs</li>
+            <li>Examples: UserRepository, MailChimpService, ArticlesService</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Input Layer</h2>
+
+          <ul>
+            <li>The entry point</li>
+            <li>Should only receives user input</li>
+            <li>Returns a response to the user</li>
+            <li>Controllers, CLIs, WebSockets, GUIs</li>
+            <li>Examples: UsersController, ArticlesController</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Summarizing</h2>
+
+          <ul>
+            <li>Keep it simple</li>
+            <li>You don't need to use everything</li>
+            <li>Find what works better for and your business</li>
+            <li>Make it fun</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Additional Information</h2>
+
+          <ul>
+            <li><a href="https://blog.codeminer42.com">The Miners - Scalable Frontend #1</a></li>
+            <li><a href="https://www.youtube.com/watch?v=WpkDN78P884">Uncle Bob - Architecture the Lost Years</a></li>
+          </ul>
+        </section>
+
+        <section class="align-left">
+          <h1>Thanks!</h1>
+
+          <p><a href="https://iagodahlem.com">iagodahlem.com</a></p>
+          <p>@iagodahlem</p>
+        </section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        controls: false,
+        progress: false,
+        history: true,
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+  </body>
+</html>

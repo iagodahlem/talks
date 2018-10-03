@@ -1,0 +1,65 @@
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+
+$blue: #24afff;
+$red: #ea2027;
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #000;
+
+$mainFont: 'Montserrat', sans-serif;
+$mainFontSize: 42px;
+$mainColor: #fff;
+
+// Vertical spacing between blocks of text
+$blockMargin: 20px;
+
+$heading1TextShadow: $headingTextShadow;
+$headingColor: #fff;
+$headingFont: 'Arvo', serif;
+$headingFontWeight: 700;
+$headingTextShadow: none;
+$headingTextTransform: uppercase;
+
+$heading1Size: 2.5em;
+$heading2Size: 1.6em;
+$heading3Size: 1.3em;
+$heading4Size: 1.0em;
+
+$linkColor: $blue;
+$linkColorHover: lighten( $linkColor, 15% );
+
+// Text selection
+$selectionBackgroundColor: $linkColor;
+$selectionColor: #fff;
+
+// Theme template ------------------------------
+@import "../template/theme";
+
+.reveal .highlight {
+  color: $linkColor;
+}
+
+.reveal .highlight-red {
+  color: $red;
+}
+
+.reveal .bold {
+  font-weight: 600;
+}
+
+.reveal .uppercase {
+  text-transform: uppercase;
+}
+
+.reveal .align-left {
+  text-align: left;
+}
+
+.reveal section img {
+  margin: 0;
+  border: none;
+  background: none;
+  box-shadow: none;
+}
