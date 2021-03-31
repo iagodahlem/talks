@@ -1,0 +1,11 @@
+{
+  "packages": ["architecting-rails-apps", "decoupling-from-the-state-layer"],
+  "version": "independent",
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "command": {
+    "run": {
+      "npmClient": "yarn"
+    }
+  }
+}
