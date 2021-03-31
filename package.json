@@ -5,7 +5,8 @@
     "decoupling-from-the-state-layer"
   ],
   "scripts": {
-    "start": "live-server --open=./index.html"
+    "start": "live-server --open=./index.html",
+    "build": ""
   },
   "dependencies": {
     "lerna": "^4.0.0",
