@@ -6,7 +6,8 @@
   ],
   "scripts": {
     "start": "live-server --open=./index.html",
-    "build": ""
+    "build": "",
+    "test": ""
   },
   "dependencies": {
     "lerna": "^4.0.0",
