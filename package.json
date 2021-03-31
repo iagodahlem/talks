@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "workspaces": [
+    "architecting-rails-apps",
+    "decoupling-from-the-state-layer"
+  ],
+  "scripts": {
+    "start": "live-server --open=./index.html"
+  },
+  "dependencies": {
+    "lerna": "^4.0.0",
+    "live-server": "^1.2.1"
+  }
+}
