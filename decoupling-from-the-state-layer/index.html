@@ -13,32 +13,268 @@
   <link rel="stylesheet" href="../dist/theme/iagodahlem.css" id="theme">
 
   <!-- Theme used for syntax highlighted code -->
-  <link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+  <link rel="stylesheet" href="plugin/highlight/dracula.css" id="highlight-theme">
 </head>
 <body>
   <div class="reveal">
     <div class="slides">
-      <section>
-        <h3>Decoupling from the State Layer</h3>
+      <section style="text-align: left;">
+        <h2>Decoupling from the State Layer</h2>
         <p><em>Custom Hooks</em> to the Rescue!</p>
-        <small>Iago Dahlem Lorensini</small>
       </section>
 
       <section>
         <h3>Hi! 👋</h3>
         <p>My name is Iago.</p>
+
+        <aside class="notes">
+          Hello everyone! My name is Iago, and today I'm here to talk about decoupling the state layer with custom hooks.
+        </aside>
       </section>
 
       <section>
-        <h3>?</h3>
-        mostrar os pqs com exemplos de codigo
+        <ul>
+          <li>What are hooks?</li>
+          <li>Why should you care?</li>
+          <li>How to do it!</li>
+        </ul>
       </section>
 
       <section>
-        <h3>How</h3>
-        mostrar a linha entre estado e view
-        mostrar exemplos de codigo
-        regras
+        <h3>What are <em>hooks</em>?</h3>
+        <p>
+          A feature provided by libraries for <strong>isolating</strong>, <strong>reusing</strong> and <strong>composing</strong> stateful logic.
+        </p>
+
+        <aside class="notes">
+          So first, before we start, let's cover some ground basics, what are hooks?
+          In the context of this talk, we will be referring to hooks as a feature in which a UI library allows you to have a
+          better way to isolate, reuse and compose stateful logic.
+        </aside>
+      </section>
+
+      <section>
+        <p>A concept independently of library...</p>
+
+        <aside class="notes">
+          So we can think in it as a concept, independently of library.
+        </aside>
+      </section>
+
+      <section>
+        <p>...that allows us to handle stateful logic, detached from the view.</p>
+
+        <aside class="notes">
+          Where we can handle stateful or async logic detached from our components.
+          Being easier to compose and reuse logic as well as to decouple our view from the state, independently of
+          state management libraries if there's any being used, and so on.
+        </aside>
+      </section>
+
+      <section>
+        <h4>Libraries</h4>
+        <ul>
+          <li>React: <a href="https://reactjs.org/docs/hooks-intro.html">Hooks</a></li>
+          <li>Vue: <a href="https://v3.vuejs.org/guide/composition-api-introduction.html">Composition API</a></li>
+        </ul>
+
+        <aside class="notes">
+          I'm not going to give a whole introduction about hooks, types of hooks or how to use them with React, Vue or whatever.
+          Just know that React has a very good introduction to hooks, and Vue has a very similar feature called Composition API
+          with a very good introduction as well.
+          And be aware, that, independently of library you are using, be it Angular or whatever, it will have some feature that
+          matches with hooks, so the techniques here apply.
+        </aside>
+      </section>
+
+      <section>
+        <h4>What about <em>custom hooks</em>?</h4>
+        <p>
+          A new hook, being composed by thirdy party hooks or other custom hooks.
+        </p>
+
+        <aside class="notes">
+          Cool, now that we know what are hooks, what are custom hooks?
+        </aside>
+      </section>
+
+      <section>
+        <pre><code data-trim data-noescape data-line-numbers="1,4,8,9"><script type="text/template">
+import React, { useState } from 'react'
+
+const Counter = () => {
+  const [count, setCount] = useState(0)
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  )
+}
+        </script></code></pre>
+
+        <aside class="notes">
+          Let's see this example, here we are using `useState` for having a local state within a component.
+        </aside>
+      </section>
+
+      <section>
+        <pre><code data-trim data-noescape data-line-numbers="1,4,7,8"><script type="text/template">
+import { useState } from 'react'
+
+const useCounter = (initialState) => {
+  const [count, setCount] = useState(initialState)
+
+  return {
+    count,
+    increment: () => setCount(count + 1),
+  }
+}
+        </script></code></pre>
+
+        <aside class="notes">
+          If we create a new function, reusing hooks from React and export that to our component.
+        </aside>
+      </section>
+
+      <section>
+        <pre><code data-trim data-noescape data-line-numbers="2,5,9-10"><script type="text/template">
+import React from 'react'
+import useCounter from '...'
+
+const Counter = () => {
+  const { count, increment } = useCounter(0)
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => increment()}>
+        Click me
+      </button>
+    </div>
+  )
+}
+        </script></code></pre>
+
+        <aside class="notes">
+          That's a custom hook.
+        </aside>
+      </section>
+
+      <section>
+        <h3>Why should I care? 🤔</h3>
+
+        <aside class="notes">
+          Nice, now that we have some stuff covered. Why should you care about using custom hooks to decouple the state layer?
+          What does it even mean to have my state layer coupled or not?
+        </aside>
+      </section>
+
+      <section>
+        <p>Coupling...</p>
+
+        <aside class="notes">
+          First, to answer that, let's talk about what is coupling...
+        </aside>
+      </section>
+
+      <section>
+        <p>...is the degree of interdependence between software modules.</p>
+
+        <aside class="notes">
+          In software development and computer programming, coupling is the degree of interdependence between software modules.
+          It was created as a part of software quality metrics to reduce maintenance and modification costs.
+          It aims to improve readability and maintanability.
+        </aside>
+      </section>
+
+      <section>
+        <div class="flex justify-space-beween">
+          <div>
+            <h4>Tight ❌</h4>
+            <ul>
+              <li>Dependent of each other</li>
+              <li>No clearer data flow</li>
+              <li>Harder to read, refactor and test</li>
+            </ul>
+          </div>
+
+          <div>
+            <h4>Loose ✅</h4>
+            <ul>
+              <li>Can be used separately</li>
+              <li>Clearer separation of responsibilities</li>
+              <li>Much easier to understand</li>
+            </ul>
+          </div>
+        </div>
+
+        <aside class="notes">
+          So we can say that if two modules are tight coupled to each other, they are highly dependent of each other, being very hard to reuse,
+          and there's not a clear path from where the data flows trough the code.
+          Yet if they are loosed coupled to each other, there's a clearer separation from where the data flows, and it's much
+          easier to understand and refactor them.
+        </aside>
+      </section>
+
+      <section>
+        <p>Coupling in UI libraries...</p>
+
+        <aside class="notes">
+          So talking about coupling in front-end development with modern UI libraries. We can think in it as having two main acting parts.
+        </aside>
+      </section>
+
+      <section>
+        <div class="flex justify-space-beween">
+          <div>
+            <h4>View</h4>
+            <ul>
+              <li>Handles presentation</li>
+              <li>Semantics (HTML)</li>
+              <li>Styling (CSS)</li>
+            </ul>
+          </div>
+
+          <div>
+            <h4>State</h4>
+            <ul>
+              <li>Handles behavior</li>
+              <li>Stateful logic</li>
+              <li>Async calls</li>
+            </ul>
+          </div>
+        </div>
+
+        <aside class="notes">
+          The "View", or components, where we handle presentation like semantics and styling, and then there's also the "State"
+          where we handle stateful logic, async calls, etc...
+          And even tho they seem to be separate things, I'm pretty sure you have already seen components handling stateful logic
+          or even worse things than that.
+        </aside>
+      </section>
+
+      <section>
+        <h4>Decoupled View and State</h4>
+        <ul>
+          <li>Better composability and reusability</li>
+          <li>Clearer separation of concerns</li>
+          <li>Good testability</li>
+        </ul>
+
+        <aside class="notes">
+          So that's exactly what we want to avoid in our apps, to have a view decoupled from the state giving us a better
+          composability, clearer separation of concerns into domain-oriented units, you can have custom hooks to represent
+          portions of your domain having having single responsibility and good testability so we a have an standardized way to
+          make testing easyli enough.
+        </aside>
+      </section>
+
+      <section>
+        <h3>Custom Hooks to the Rescue</h3>
       </section>
     </div>
   </div>
