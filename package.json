@@ -1,9 +1,14 @@
 {
   "private": true,
-  "workspaces": [
-    "architecting-rails-apps",
-    "decoupling-from-the-state-layer"
-  ],
+  "workspaces": {
+    "packages": [
+      "architecting-rails-apps",
+      "decoupling-from-the-state-layer"
+    ],
+    "nohoist": [
+      "**"
+    ]
+  },
   "scripts": {
     "start": "live-server --open=./index.html",
     "build": "lerna run build",
