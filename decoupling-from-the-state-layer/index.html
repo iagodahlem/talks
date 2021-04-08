@@ -18,26 +18,19 @@
 <body>
   <div class="reveal">
     <div class="slides">
-      <section style="text-align: left;">
+      <section>
         <h2>Decoupling from the State Layer</h2>
-        <p><em>Custom Hooks</em> to the Rescue!</p>
+        <p>
+          <em>Custom Hooks</em> to the Rescue!
+        </p>
       </section>
 
       <section>
         <h3>Hi! 👋</h3>
         <p>My name is Iago.</p>
-
         <aside class="notes">
           Hello everyone! My name is Iago, and today I'm here to talk about decoupling the state layer with custom hooks.
         </aside>
-      </section>
-
-      <section>
-        <ul>
-          <li>What are hooks?</li>
-          <li>Why should you care?</li>
-          <li>How to do it!</li>
-        </ul>
       </section>
 
       <section>
@@ -45,7 +38,6 @@
         <p>
           A feature provided by libraries for <strong>isolating</strong>, <strong>reusing</strong> and <strong>composing</strong> stateful logic.
         </p>
-
         <aside class="notes">
           So first, before we start, let's cover some ground basics, what are hooks?
           In the context of this talk, we will be referring to hooks as a feature in which a UI library allows you to have a
@@ -55,7 +47,6 @@
 
       <section>
         <p>A concept independently of library...</p>
-
         <aside class="notes">
           So we can think in it as a concept, independently of library.
         </aside>
@@ -63,7 +54,6 @@
 
       <section>
         <p>...that allows us to handle stateful logic, detached from the view.</p>
-
         <aside class="notes">
           Where we can handle stateful or async logic detached from our components.
           Being easier to compose and reuse logic as well as to decouple our view from the state, independently of
@@ -77,7 +67,6 @@
           <li>React: <a href="https://reactjs.org/docs/hooks-intro.html">Hooks</a></li>
           <li>Vue: <a href="https://v3.vuejs.org/guide/composition-api-introduction.html">Composition API</a></li>
         </ul>
-
         <aside class="notes">
           I'm not going to give a whole introduction about hooks, types of hooks or how to use them with React, Vue or whatever.
           Just know that React has a very good introduction to hooks, and Vue has a very similar feature called Composition API
@@ -92,9 +81,8 @@
         <p>
           A new hook, being composed by thirdy party hooks or other custom hooks.
         </p>
-
         <aside class="notes">
-          Cool, now that we know what are hooks, what are custom hooks?
+          Now that we know what are hooks, what are custom hooks?
         </aside>
       </section>
 
@@ -115,9 +103,8 @@ const Counter = () => {
   )
 }
         </script></code></pre>
-
         <aside class="notes">
-          Let's see this example, here we are using `useState` for having a local state within a component.
+          Let's take a look in this example, here we are using `useState` for having a local state within a component.
         </aside>
       </section>
 
@@ -134,7 +121,6 @@ const useCounter = (initialState) => {
   }
 }
         </script></code></pre>
-
         <aside class="notes">
           If we create a new function, reusing hooks from React and export that to our component.
         </aside>
@@ -158,7 +144,6 @@ const Counter = () => {
   )
 }
         </script></code></pre>
-
         <aside class="notes">
           That's a custom hook.
         </aside>
@@ -166,16 +151,14 @@ const Counter = () => {
 
       <section>
         <h3>Why should I care? 🤔</h3>
-
         <aside class="notes">
-          Nice, now that we have some stuff covered. Why should you care about using custom hooks to decouple the state layer?
+          Nice, now that we have some ground covered. Why should you care about using custom hooks to decouple the state layer?
           What does it even mean to have my state layer coupled or not?
         </aside>
       </section>
 
       <section>
         <p>Coupling...</p>
-
         <aside class="notes">
           First, to answer that, let's talk about what is coupling...
         </aside>
@@ -183,10 +166,9 @@ const Counter = () => {
 
       <section>
         <p>...is the degree of interdependence between software modules.</p>
-
         <aside class="notes">
           In software development and computer programming, coupling is the degree of interdependence between software modules.
-          It was created as a part of software quality metrics to reduce maintenance and modification costs.
+          It was created as a part of, software quality metrics, to reduce maintenance and modification costs.
           It aims to improve readability and maintanability.
         </aside>
       </section>
@@ -201,7 +183,6 @@ const Counter = () => {
               <li>Harder to read, refactor and test</li>
             </ul>
           </div>
-
           <div>
             <h4>Loose ✅</h4>
             <ul>
@@ -211,9 +192,8 @@ const Counter = () => {
             </ul>
           </div>
         </div>
-
         <aside class="notes">
-          So we can say that if two modules are tight coupled to each other, they are highly dependent of each other, being very hard to reuse,
+          We can say that if two modules are tight coupled, they are highly dependent of each other, being very hard to reuse,
           and there's not a clear path from where the data flows trough the code.
           Yet if they are loosed coupled to each other, there's a clearer separation from where the data flows, and it's much
           easier to understand and refactor them.
@@ -222,9 +202,9 @@ const Counter = () => {
 
       <section>
         <p>Coupling in UI libraries...</p>
-
         <aside class="notes">
-          So talking about coupling in front-end development with modern UI libraries. We can think in it as having two main acting parts.
+          So talking about coupling in front-end development with modern UI libraries. We can think in it as having two main
+          acting parts or layers.
         </aside>
       </section>
 
@@ -248,12 +228,12 @@ const Counter = () => {
             </ul>
           </div>
         </div>
-
         <aside class="notes">
-          The "View", or components, where we handle presentation like semantics and styling, and then there's also the "State"
-          where we handle stateful logic, async calls, etc...
-          And even tho they seem to be separate things, I'm pretty sure you have already seen components handling stateful logic
-          or even worse things than that.
+          The "View", or components, where we handle presentation, thinkgs like semantics, structure and style, and then
+          there's also the "State" where we handle stateful logic, things like async calls, etc...
+          And even tho they seem to be separate things, I'm pretty sure mostly of you have already seen components handling
+          stateful logic, which is not totally wrong, but eventually as we add more and more features to an app, this can get
+          out of hand.
         </aside>
       </section>
 
@@ -264,17 +244,676 @@ const Counter = () => {
           <li>Clearer separation of concerns</li>
           <li>Good testability</li>
         </ul>
-
         <aside class="notes">
-          So that's exactly what we want to avoid in our apps, to have a view decoupled from the state giving us a better
-          composability, clearer separation of concerns into domain-oriented units, you can have custom hooks to represent
-          portions of your domain having having single responsibility and good testability so we a have an standardized way to
-          make testing easyli enough.
+          And that's exactly what we want to avoid in our apps, we want to separate the state from the view, by creating a line
+          between them with custom hooks, so we can let the view handle only presentation stuff, and the state handles logic and
+          data,
+          connecting the rest of the app to the UI.
+          That way we achieve a better composability, at the end of the day, hooks are just functions, so composing them just
+          works.
+          We have a clearer separation of concerns, being able to separate into domain-oriented units, where we have custom
+          hooks to represent portions of your domain.
+          And it's also much easier to test components that are not implementing a lot of logic, so it provides us a good
+          testability as well.
         </aside>
       </section>
 
       <section>
         <h3>Custom Hooks to the Rescue</h3>
+        <aside class="notes">
+          Cool, now that we know why to use custom hooks to decoupled the state, let's take a step-by-step approach to see how
+          to achieve a good separation of hooks and what we should expose to the component.
+        </aside>
+      </section>
+
+      <section>
+        <h4>1. The Rules</h4>
+        <aside class="notes">
+          First, let's stablish some ground rules.
+        </aside>
+      </section>
+
+      <section>
+        <p>
+          A. <em>Custom hooks should obey every other rules dictated by the library you are using.</em>
+        </p>
+        <aside class="notes">
+          Every library has best practices and rules to use certain features, and that's applies to hooks as well, so make sure
+          you read that first or use some
+          kind of lint plugin to enforce these rules automatically.
+        </aside>
+      </section>
+
+      <section>
+        <p>
+          B. <em>Custom hooks should not leak or reveal the technology being used underneath.</em>
+        </p>
+        <aside class="notes">
+          The consumer of a custom hook, should not know if it is using Context API, Redux, Mobx, GraphQL, or
+          whatever else.
+          It only and always should expose and object with functions and data to the UI.
+        </aside>
+      </section>
+
+      <section>
+        <p>
+          C. <em>Custom hooks should not expose the shape of the state being stored.</em>
+        </p>
+        <aside class="notes">
+          Which means that the functions exposed by a hook, that are capable of triggering changes in the state, should not be
+          simply setters, they should represent commands from your core domain.
+        </aside>
+      </section>
+
+      <section>
+        <p>
+          D. <em>A custom hook should not cover too much state.</em>
+        </p>
+        <aside class="notes">
+          So if your hook is dealing with a portion too big from the state, it should be breaked-up into domain-oriented pieces and
+          and it should be orthogonal to other custom hooks as much as possible.
+        </aside>
+      </section>
+
+      <section>
+        <h4>2. The line between view and state</h4>
+        <aside class="notes">
+          Okay, now let's see how to actually cut a line between the state and the view to decoupled them.
+          I will use here an imaginary blog application for the rest of the examples.
+          So let's say we have a page for listing articles, where we can paginate this list, we should handle async request, to
+          show some sort of feedback to the user, and handle errors as well in case anything goes worng.
+        </aside>
+      </section>
+
+      <section>
+        <p>
+          <strong>useArticles</strong>
+        </p>
+        <pre><code data-trim data-noescape data-line-numbers><script type="text/template">
+import React from 'react'
+import useArticles from '...'
+
+const Articles = () => {
+  const {} = useArticles()
+
+  return (
+    <div>
+      {/* List articles */}
+    </div>
+  )
+}
+        </script></code></pre>
+        <aside class="notes">
+          From that, to start off, we take that we have one custom hook called useArticles, to be responsible for
+          listing and paginating articles.
+        </aside>
+      </section>
+
+      <section>
+        <h4>3. Custom Hook's Public Interface</h4>
+        <aside class="notes">
+          Cool, now that we have our first hook defined, it's not really doing anything, so what should this hook expose to the view?
+          Let's start by defining its public interface. You don’t have to define the interface first every time you create a custom hook,
+          but it’s a good way to understand the process of designing a custom hook and to get used to this approach.
+        </aside>
+      </section>
+
+      <section>
+        <p>
+          <strong>State Shape</strong>
+        </p>
+        <pre><code data-trim data-noescape data-line-numbers="1-21|2-6|7-20|2-6"><script type="text/template">
+{
+  list: [
+    { id: 1, title: 'Frontend architecture' },
+    { id: 2, title: 'Common patterns' }
+  ],
+  currentPage: 2,
+  currentArticle: {
+    id: 2,
+    title: 'Common patterns',
+    content: "Let's continue...",
+    comments: {
+      status: 'LOADED',
+      list: [
+        {
+          userName: "Taly 'The Architect' Son",
+          content: "Isn't 'Common patterns' a redudant title?"
+        }
+      ]
+    }
+  }
+}
+        </script></code></pre>
+        <aside class="notes">
+          So assuming this is the shape of the state we will be storing after we fetch this data from an API or whatever else.
+          We have an array for keeping all the articles and a key for storing the current page of our pagination, these will be
+          responsibility of the `useArticles` hook.
+          We also have another key for storing the current article and this one could go to a hook called `useCurrentArticle`.
+          But we are not going to deal with this one now.
+          Looking at this shape, we already know what data we want to expose to our hook, an array of articles, and the `currentPage`.
+          We can even map the `list` key to `articles`, to make it clearer to who is consuming it.
+        </aside>
+      </section>
+
+      <section>
+        <p>
+          <strong>useArticles</strong>
+        </p>
+        <pre><code data-trim data-noescape data-line-numbers="5"><script type="text/template">
+import React from 'react'
+import useArticles from '...'
+
+const Articles = () => {
+  const { articles, currentPage } = useArticles()
+
+  return (
+    <div>
+      {/* List articles */}
+    </div>
+  )
+}
+        </script></code></pre>
+        <aside class="notes">
+          So, disregarding implementation details now, that's what we want to expose from the `useArticles` hook.
+          The consumer shouldn't care if Redux or any other state management library is being used and it should reflect on the
+          keys of the returned object.
+        </aside>
+      </section>
+
+      <section>
+        <p>
+          <strong>useArticles</strong>
+        </p>
+        <pre><code data-trim data-noescape data-line-numbers="8-11"><script type="text/template">
+import React from 'react'
+import useArticles from '...'
+
+const Articles = () => {
+  const {
+    articles,
+    currentPage,
+    isFirstPage,
+    isLastPage,
+    isLoading,
+    hasError
+  } = useArticles()
+
+  return (
+    <div>
+      {/* List articles */}
+    </div>
+  )
+}
+        </script></code></pre>
+        <aside class="notes">
+          There's more data we could expose to make things easier for the UI, we can return if it's on the first page or last
+          page, if it's loading, or if there's any error during load time. These could be derivated from some meta-data that is
+          stored, but not fully exposed to the UI. We can also handle loading and error using a state machine exposing only
+          booleans to the UI.
+
+          Okay cool, I think we have all the data we need, but what about actions and functions?
+        </aside>
+      </section>
+
+      <section>
+        <p>
+          <strong>Actions ❌</strong>
+        </p>
+        <pre><code data-trim data-noescape data-line-numbers="12-14"><script type="text/template">
+import React from 'react'
+import useArticles from '...'
+
+const Articles = () => {
+  const {
+    articles,
+    currentPage,
+    isFirstPage,
+    isLastPage,
+    isLoading,
+    hasError,
+    setCurrentPage,
+    loadPage,
+    setIsLoading
+  } = useArticles()
+
+  return (
+    <div>
+      {/* List articles */}
+    </div>
+  )
+}
+        </script></code></pre>
+        <aside class="notes">
+          As mentioned before, the actions should not just look like setters, they should be meaningful domain-oriented
+          instructions or commands! So instead of exposing actions like setCurrentPage, loadPage, or
+          setIsLoading.
+        </aside>
+      </section>
+
+      <section>
+        <p>
+          <strong>Actions ✅</strong>
+        </p>
+        <pre><code data-trim data-noescape data-line-numbers="12-13"><script type="text/template">
+import React from 'react'
+import useArticles from '...'
+
+const Articles = () => {
+  const {
+    articles,
+    currentPage,
+    isFirstPage,
+    isLastPage,
+    isLoading,
+    hasError,
+    goToNextPage,
+    goToPreviousPage
+  } = useArticles()
+
+  return (
+    <div>
+      {/* List articles */}
+    </div>
+  )
+}
+        </script></code></pre>
+        <aside class="notes">
+          We could have a single action `goToNextPage` that will already change the value of the exposed
+          data and the UI won’t have to handle it.
+          Calling goToNextPage() would increment the current page number by 1, load it, and manage the value of the loading
+          status, and this whole thing will be abstracted by the hook.
+        </aside>
+      </section>
+
+      <section>
+        <h4>4. Implementing it Internally</h4>
+        <aside class="notes">
+          Alright, we are all set with the public interface of our hook. But how do we actually implement it?
+          Since a custom hook it's an abstraction, its important to mention that its internal implementation
+          depends on the UI library and state management you are using.
+          Here we are gonna follow using React and show how to implement both using Redux and React's Context API.
+          We won't get in any details on how to use or deal with them, only how and what to use to make the connection between
+          a Redux store or a Context consumer through a hook.
+        </aside>
+      </section>
+
+      <section>
+        <p>
+          <strong>Redux</strong>
+        </p>
+        <p>useSelector and useDispatch</p>
+        <aside class="notes">
+          So for Redux, we will use two hooks from the react-redux library, to access the state from our custom hooks,
+          useSelector and useDispatch.
+        </aside>
+      </section>
+
+      <section>
+        <p>
+          useSelector
+        </p>
+        <pre><code data-trim data-noescape data-line-numbers><script type="text/template">
+{
+  "super": {
+    "nested": {
+      "object": {}
+    }
+  }
+}
+
+const slice = useSelector(state => state.super.nested.object)
+        </script></code></pre>
+        <aside class="notes">
+          The useSelector receives a selector function as an argument, and returns a portion of the state provided by that function.
+        </aside>
+      </section>
+
+      <section>
+        <p>
+          useDispatch
+        </p>
+        <pre><code data-trim data-noescape data-line-numbers><script type="text/template">
+const dispatch = useDispatch()
+
+dispatch({ type: 'REDUX_ACTION' })
+        </script></code></pre>
+        <aside class="notes">
+          And the useDispatch will return the dispatch function. It's important to say that your hook should
+          not return the dispatch function, because that's would couple your hook to the component all over again,
+          so if you need to dispatch actions, encapsulate it inside your hook, so the UI doesn't need to know that.
+          Let's see how to use them.
+        </aside>
+      </section>
+
+      <section>
+        <p>
+          <strong>Redux</strong>
+        </p>
+        <pre><code data-trim data-noescape data-line-numbers><script type="text/template">
+import { useSelector, useDispatch } from 'react-redux'
+
+const useArticles = () => {
+  return {
+    articles: undefined
+    currentPage: undefined
+    isFirstPage: undefined
+    isLastPage: undefined
+    isLoading: undefined
+    hasError, : undefined
+    goToNextPage, : undefined
+    goToPreviousPage : undefined
+  }
+}
+        </script></code></pre>
+        <aside class="notes">
+          So first let's import these hooks we will need, and define our useArticles hook returning the interface
+          we already know.
+        </aside>
+      </section>
+
+      <section>
+        <p>
+          <strong>Redux</strong>
+        </p>
+        <pre><code data-trim data-noescape data-line-numbers="2|5-6,8,9,10|13-14|15-18"><script type="text/template">
+import { useSelector, useDispatch } from 'react-redux'
+import { /* selectors */ } from './redux'
+
+const useArticles = () => {
+  const articles = useSelector(getArticlesList)
+  const currentPage = useSelector(getCurrentPage)
+
+  const pageMetadata = useSelector(getPageMetadata)
+  const pageStatus = useSelector(getPageStatus)
+  const error = useSelector(getError)
+
+  return {
+    articles,
+    currentPage,
+    isFirstPage: ArticleFeedPage.isFirstPage(currentPage),
+    isLastPage: ArticleFeedPage.isLastPage(currentPage),
+    isLoading: status === 'loading',
+    hasError: Boolean(error),
+    goToNextPage: undefined,
+    goToPreviousPage: undefined,
+  }
+}
+        </script></code></pre>
+        <aside class="notes">
+          So we start to import the selectors we will use from our redux files.
+          Usually is a good idea to keep the custom hook file and the Redux selectors and actions in a place close to each other.
+          Then we query the data we need from our state, and return what we can to start implementing the interface we designed.
+          There are some keys that are derivered from data on our state, so unless they are simple booleans derived from a single
+          value, we should not implement the logic for computing them directly in the hook, so we delegate to functions that are
+          responsible for dealing with business core rules.
+        </aside>
+      </section>
+
+      <section>
+        <p>
+          <strong>Redux</strong>
+        </p>
+        <pre><code data-trim data-noescape data-line-numbers="2|12|14-15|24-25"><script type="text/template">
+import { useSelector, useDispatch } from 'react-redux'
+import { /* actions, selectors */ } from './redux'
+
+const useArticles = () => {
+  const articles = useSelector(getArticlesList)
+  const currentPage = useSelector(getCurrentPage)
+
+  const pageMetadata = useSelector(getPageMetadata)
+  const pageStatus = useSelector(getPageStatus)
+  const error = useSelector(getError)
+
+  const dispatch = useDispatch()
+
+  const goToNextPage = () => dispatch(goToNextPageAction())
+  const goToPreviousPage = () => dispatch(goToPreviousPageAction())
+
+  return {
+    articles,
+    currentPage,
+    isFirstPage: ArticleFeedPage.isFirstPage(currentPage),
+    isLastPage: ArticleFeedPage.isLastPage(currentPage),
+    isLoading: status === 'loading',
+    hasError: Boolean(error),
+    goToNextPage,
+    goToPreviousPage,
+  }
+}
+        </script></code></pre>
+        <aside class="notes">
+          For actions we also import them from some redux file. We create the dispatch function by calling useDispatch,
+          and define our functions to return to the hook. We could even optmize this dispatch function by using the useCallback hook
+          from React,but we are not going in to cover that here. And that's pretty much it. For implementing a custom hook with Redux.
+          It might look pretty simple, but that's all we need for encapsulating state coming from Redux store.
+          And that's the main point, your custom hooks shouldn't be to complex or contain much logic.
+
+          For implementing it with Context API, it actually looks pretty similar, first we move all the state management logic
+          provided by Redux to custom Context Provider.
+        </aside>
+      </section>
+
+      <section>
+        <p>
+          <strong>Context API: Provider</strong>
+        </p>
+        <pre><code data-trim data-noescape data-line-numbers><script type="text/template">
+import { createContext, useState } from 'react'
+
+const ArticlesContext = createContext()
+
+const ArticlesProvider = ({ children }) => {
+  const [articles, setArticles] = useState([])
+  const [currentPage, setCurrentPage] = useState(-1)
+  const [pageMetadata, setPageMetadata] = useState(null)
+  const [pageStatus, setPageStatus] = useState(PageStatus.IDLE)
+  const [error, setError] = useState(null)
+
+  const goToNextPage = async () => {
+    // ...
+  }
+
+  const goToPreviousPage = async () => {
+    // ...
+  }
+
+  const contextValue = {
+    articles,
+    currentPage,
+    isFirstPage: ArticleFeedPage.isFirst(pageMetadata),
+    isLastPage: ArticleFeedPage.isLast(pageMetadata),
+    isLoading: pageStatus === PageStatus.LOADING,
+    isLoaded: pageStatus === PageStatus.LOADED,
+    error,
+    goToNextPage,
+    goToPreviousPage
+  }
+
+  return (
+    <ArticlesContext.Provider value={contextValue}>
+      {children}
+    </ArticlesContext.Provider>
+  )
+}
+        </script></code></pre>
+        <aside class="notes">
+          And again, we are not going to in detail here how to use Context API or the logic to actually
+          fetch and manage articles pages. Just notice how the context value is exactly equal to our
+          interface returned by the Redux hook. The only difference is from where the data is stored and how we
+          manage it.
+        </aside>
+      </section>
+
+      <section>
+        <p>
+          <strong>Context API</strong>
+        </p>
+        <pre><code data-trim data-noescape data-line-numbers="1|2|4"><script type="text/template">
+import { useContext } from 'react'
+import { ArticlesContext } from './context'
+
+const useArticles = () => useContext(ArticlesContext)
+        </script></code></pre>
+        <aside class="notes">
+          Now we just need to import the useContext hook from React, import our custom ArticlesContext,
+          and return useContext directly to our hook, that will expose to our hook the context value we
+          define in the provider.
+          Now we have exatcly the same hook implemented with both Redux and Context API, notice how we only changed
+          the content of the hook, without having to worry or refactoring the component.
+        </aside>
+      </section>
+
+      <section>
+        <p style="margin-bottom: 120px">
+          <strong>View</strong>
+        </p>
+        <hr />
+        <p style="margin-top: 120px">
+          <strong>State</strong>
+        </p>
+        <aside class="notes">
+          That's because we created that line between the state and the view, so the consumer of a hook,
+          doesn't care about the change, as long as we keep the same public interface.
+          The advantage of this technique is that if we change our state management library, the only part that needs to change
+          are the custom hooks.
+        </aside>
+      </section>
+
+      <section>
+        <h3>How to Test Components using Custom Hooks</h3>
+        <aside class="notes">
+          Alright, now we know everything about custom hooks and how to implement them using two different strategies,
+          the only thing left is how to test the components using those custom hooks.
+          There are two main ways for doing that.
+        </aside>
+      </section>
+
+      <section>
+        <p>
+          <strong>Mocking Paths</strong>
+        </p>
+        <pre><code data-trim data-noescape data-line-numbers="1-22|5|10-15"><script type="text/template">
+import { render } from '@testing-library/react'
+import { Article } from '../components/article/Article'
+import { useCurrentArticle } from '../state/article/hooks'
+
+jest.mock('../../state/article/hooks')
+
+describe('<Article />', () => {
+  describe('when article does not have comments', () => {
+    it('renders a message about not having comments', () => {
+      useCurrentArticle.mockReturnValue({
+        id: 42,
+        title: 'Something',
+        content: 'This is the content',
+        comments: []
+      })
+
+      const { getByText } = render(<Article />)
+
+      expect(
+        getByText('No comments yet, be the first')
+      ).toBeInTheDocument()
+    })
+  })
+})
+        </script></code></pre>
+        <aside class="notes">
+          Even though mocking imports is not ideally most of the time, mocking the import for a custom hook inside the file
+          that tests a component is the easiest approach.
+          Here is an example using Jest, we use module mocking functions to mock the hook path. Then we can change the hook
+          implementation for forcing a case we want to test.
+        </aside>
+      </section>
+
+      <section>
+        <p>
+          <strong>Mocking Provider</strong>
+        </p>
+        <pre><code data-trim data-noescape data-line-numbers="1-30|8-21|23-25"><script type="text/template">
+import { render } from '@testing-library/react'
+import { Article } from '../../components/article/Article'
+import { CurrentArticleProvider } from '../../state/article/providers'
+
+describe('<Article />', () => {
+  describe('when article does not have comments', () => {
+    it('renders a message about not having comments', () => {
+      const FakeProvider = ({ children }) => {
+        return (
+          <CurrentArticleProvider
+            value={{
+              id: 42,
+              title: 'Something',
+              content: 'This is the content',
+              comments: []
+            }}
+          >
+            {children}
+          </CurrentArticleProvider>
+        )
+      }
+
+      const { getByText } = render(<Article />, {
+        wrapper: CurrentArticleProvider
+      })
+
+      expect(
+        getByText('No comments yet, be the first')
+      ).toBeInTheDocument()
+    })
+  })
+})
+        </script></code></pre>
+        <aside class="notes">
+          The second approach is by mocking the data source of our hooks, like createing a fake context provider,
+          or a fake Redux store while rendering the tests. This also works well, but it feels like it couples
+          the components tests too much to our state layer. Since we have mock the technology our hooks are using internally.
+          But here it is, first we create a fake ContextProvider returning the data we need for the test. Then for this one,
+          we can use the wrapper function of react-testing-library to wrap our component with that fake Context.
+          If you are not using it, you can just wrap your component manually with the fake provider everytime you render it.
+        </aside>
+      </section>
+
+      <section>
+        <h3>Wrapping it up</h3>
+        <ul>
+          <li>What are custom hooks</li>
+          <li>Why we should care about decoupling the state from the view</li>
+          <li>How to implement with different strategies</li>
+          <li>How to test it</li>
+        </ul>
+        <aside class="notes">
+          So just to recap, today we learned what are custom hooks, why we should care about
+          decoupling the state from the view, how to implement them using both Redux and Context API
+          and how to test components using custom hooks.
+        </aside>
+      </section>
+
+      <section>
+        <h3>References</h3>
+        <ul>
+          <li><a href="https://reactjs.org/docs/hooks-intro.html">Introduction to React Hooks</a></li>
+          <li><a href="https://reactjs.org/docs/hooks-faq.html">React Hooks FAQ</a></li>
+          <li><a href="https://react-redux.js.org/api/hooks">React-Redux hooks</a></li>
+          <li><a href="https://v3.vuejs.org/guide/composition-api-introduction.html">Vue Composition API</a></li>
+          <li><a href="https://jestjs.io/docs/manual-mocks">Jest Manual Mocks</a></li>
+          <li><a href="https://www.dddcommunity.org/books/">DDD Books</a></li>
+          <li><a href="https://www.domainlanguage.com/wp-content/uploads/2016/05/DDD_Reference_2015-03.pdf">DDD Reference</a></li>
+        </ul>
+        <aside class="notes">
+          Here are some references in case you wanna read it, and the link of the slides will be on the description.
+        </aside>
+      </section>
+
+      <section class="align-left">
+        <h1>Thanks!</h1>
+        <p><a href="https://iagodahlem.com">iagodahlem.com</a></p>
+        <p>@iagodahlem</p>
+        <aside class="notes">
+          So that's it for today, hope you all liked, thanks so much for watching, and I see you guys in the next one!
+        </aside>
       </section>
     </div>
   </div>
