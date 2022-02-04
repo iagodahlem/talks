@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>
+      HTML and CSS: The Backbone of the Web | 💬 Talks | Iago Dahlem Lorensini
+    </title>
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Arvo:400,700|Montserrat:300,400,500,600,700"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/iagodahlem.css" id="theme" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link
+      rel="stylesheet"
+      href="plugin/highlight/dracula.css"
+      id="highlight-theme"
+    />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>HTML and CSS:</h1>
+          <p>The Backbone of the Web</p>
+          <em>And techniques to handle them!</em>
+        </section>
+
+        <section>
+          <h3>Hi! 👋</h3>
+          <p>I'm Iago.</p>
+        </section>
+
+        <section>
+          <h2>The RoadMap</h2>
+          <ul>
+            <li>What is HTML and CSS</li>
+            <li>What they are not</li>
+            <li>BEM CSS</li>
+            <li>IT CSS</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>HTML</h2>
+          <em>HyperText Markup Language</em>
+          <ul style="margin-top: 32px">
+            <li>It is not a Programming Language!</li>
+            <li>It defines the meaning and structure of web content</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>HTML Concepts</h3>
+          <ul>
+            <li>Elements</li>
+            <li>Semantic</li>
+            <li>Accessibility</li>
+            <li>SEO</li>
+          </ul>
+        </section>
+
+        <section>
+          <h4>HTML Base Structure</h4>
+          <pre><code data-trim data-noescape><script type="text/template">
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+              <meta charset="UTF-8">
+              <title>Document</title>
+            </head>
+            <body>
+
+            </body>
+            </html>
+          </script></code></pre>
+        </section>
+
+        <section>
+          <h4>Anatomy of an Element</h4>
+          <img src="img/grumpy-cat-small.png" alt="" />
+        </section>
+
+        <section>
+          <h4>Elements with Attributes</h4>
+          <img src="img/grumpy-cat-attribute-small.png" alt="" />
+        </section>
+
+        <section>
+          <h4>Empty Elements</h4>
+          <pre><code data-trim data-noescape><script type="text/template">
+            <img src="example.png" alt="My example" />
+          </script></code></pre>
+        </section>
+
+        <section>
+          <h3>Semantic</h3>
+          <p>Meaning, Structure, Hierarchy</p>
+        </section>
+
+        <section>
+          <h2>CSS</h2>
+          <em>Cascading Style Sheets</em>
+          <ul style="margin-top: 32px">
+            <li>It is not a Programming Language either!</li>
+            <li>It defines the looking and usability of web content</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>CSS Concepts</h3>
+          <ul>
+            <li>Selectors</li>
+            <li>Specificity</li>
+            <li>Cascade</li>
+            <li>Inheritance</li>
+          </ul>
+        </section>
+
+        <section>
+          <h4>Selectors</h4>
+          <pre><code data-trim data-noescape data-line-numbers=""><script type="text/template">
+            /* Universal   */ * { color: black; }
+            /* Element     */ a { color: blue; }
+            /* Classe      */ .special { color: pink; }
+            /* ID          */ #unique { color: orange; }
+            /* Attribute   */ a[href="https://example.com"] { color: red; }
+            /* Pseudo's    */ a:hover { color: yellow; }
+            /* Combinators */ article > a { color: green; }
+          </script></code></pre>
+        </section>
+
+        <section>
+          <h4>Specificity</h4>
+          <pre><code data-trim data-noescape><script type="text/template">
+            .special {
+              color: orange;
+            }
+            a {
+              color: blue;
+            }
+          </script></code></pre>
+          <pre><code data-trim data-noescape><script type="text/template">
+            <a href="https://example.com" class="special">Click Me</a>
+          </script></code></pre>
+        </section>
+
+        <section>
+          <h4>Specificity Score</h4>
+          <img src="img/specificity-score.png" alt="" />
+        </section>
+
+        <section>
+          <h3>Cascading</h3>
+          <pre><code data-trim data-noescape><script type="text/template">
+            h1 {
+              color: blue;
+            }
+            h1 {
+              color: black;
+            }
+          </script></code></pre>
+        </section>
+
+        <section>
+          <h4>Inheritance</h4>
+          <pre><code data-trim data-noescape><script type="text/template">
+            body {
+              color: purple;
+            }
+          </script></code></pre>
+        </section>
+
+        <section>
+          <p>⛔ !important</p>
+        </section>
+
+        <section>
+          <p>CSS can become a problem pretty quickly!</p>
+        </section>
+
+        <section>
+          <h3>BEM CSS</h3>
+          <p>Block... Elements... Modifiers...</p>
+        </section>
+
+        <section>
+          <h4>Block</h4>
+          <p>Standalone entity that is meaningful on its own.</p>
+          <p>
+            Examples: <code>.header</code>, <code>.container</code>,
+            <code>.button</code>, <code>.input</code>, <code>.menu</code> etc...
+          </p>
+        </section>
+
+        <section>
+          <h4>Element</h4>
+          <p>
+            A part of a block that has no standalone meaning and is semantically
+            tied to its block.
+          </p>
+          <p>
+            Examples: <code>.header__title</code>, <code>.menu__item</code>,
+            <code>.list__item</code>, etc...
+          </p>
+        </section>
+
+        <section>
+          <h4>Modifier</h4>
+          <p>
+            A flag on a block or element. Use them to change appearance or
+            behavior.
+          </p>
+          <p>
+            Examples: <code>.button--disabled</code>,
+            <code>.button--primary</code>, <code>.button--secondary</code>,
+            <code>.input--size-big</code>, etc...
+          </p>
+        </section>
+
+        <section>
+          <pre><code data-trim data-noescape><script type="text/template">
+            .button {
+              ...
+            }
+
+            .button--primary {
+              background-color: blue;
+            }
+
+            .button--secondary {
+              background-color: red;
+            }
+          </script></code></pre>
+        </section>
+
+        <section>
+          <pre><code data-trim data-noescape><script type="text/template">
+            <button class="button">Normal Button</button>
+
+            <button class="button button--primary">Success Button</button>
+
+            <button class="button button--secondary">Danger Button</button>
+          </script></code></pre>
+        </section>
+
+        <section>
+          <img src="img/github-ui.png" alt="" />
+        </section>
+
+        <section>
+          <h3>IT CSS</h3>
+          <p>Inverted Triangle CSS</p>
+        </section>
+
+        <section data-background-color="white">
+          <img src="img/itcss.svg" alt="" />
+        </section>
+
+        <section>
+          <h4>Settings</h4>
+          <p>Configurations and variables.</p>
+          <pre><code data-trim data-noescape><script type="text/template">
+            $color-ui: #bada55;
+            $spacing-unit: 10px;
+          </script></code></pre>
+        </section>
+
+        <section>
+          <h4>Generic</h4>
+          <p>Resets applied to all elements.</p>
+          <pre><code data-trim data-noescape><script type="text/template">
+            *,
+            *::before,
+            *::after {
+              box-sizing: border-box;
+            }
+          </script></code></pre>
+        </section>
+
+        <section>
+          <h4>Elements</h4>
+          <p>Unclassed HTML tags</p>
+          <pre><code data-trim data-noescape><script type="text/template">
+            ul {
+              list-style: square outside;
+            }
+          </script></code></pre>
+        </section>
+
+        <section>
+          <h4>Components</h4>
+          <p>Well designed pieces of UI</p>
+          <pre><code data-trim data-noescape><script type="text/template">
+            .products-list {
+              border-top: 1px solid $color-ui;
+            }
+
+            .products-list__item {
+              border-bottom: 1px solid $color-ui;
+            }
+          </script></code></pre>
+        </section>
+
+        <section>
+          <h4>Utilities</h4>
+          <p>Overrides and specific classes</p>
+          <pre><code data-trim data-noescape><script type="text/template">
+            .one-half {
+              width: 50%;
+            }
+          </script></code></pre>
+        </section>
+
+        <section class="align-left">
+          <h1>Thanks!</h1>
+          <p><a href="https://iagodahlem.com">iagodahlem.com</a></p>
+        </section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        controls: false,
+        progress: false,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+      })
+    </script>
+  </body>
+</html>
